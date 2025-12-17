@@ -7,7 +7,7 @@ const client = new MongoClient(ENV.MONGO_URL)
 await client.connect()
 
 export const auth = betterAuth({
-    baseURL: ENV.BETTER_AUTH_URL,
+    baseURL: `${ENV.BETTER_AUTH_URL}/api/auth`,
     
     database: mongodbAdapter(client.db(), {client}),
 
