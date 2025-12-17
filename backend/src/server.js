@@ -1,6 +1,5 @@
 import express from "express";
 import { ENV } from "./lib/env.js";
-import path from "path";
 import { dbConnect } from "./lib/dbConnect.js";
 import cors from "cors";
 import { auth } from "./auth/auth.js";
@@ -16,8 +15,7 @@ const port = ENV.PORT;
 
 // Error handlers 
 process.on("uncaughtException", (err) => {
-  console.error("UNCAUGHT EXCEPTION:", err);
-  process.exit(1);
+  console.error("UNCAUGHT EXCEPTION:", err)
 });
 
 process.on("unhandledRejection", (reason) => {
@@ -28,25 +26,25 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
+// Start server
+let dbReady = false;
+app.use(async (req, res, next) => {
+  if (!dbReady) {
+    try {
+      await dbConnect();
+      dbReady = true;
+    } catch (err) {
+      console.error("DB connection failed:", err);
+      return res.status(500).json({ error: "DB connection failed" });
+    }
+  }
+  next();
+});
+
 // Mount routes
 app.all("/api/auth/{*any}", toNodeHandler(auth));
-
 app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
-app.use("/api/execution", executionRoute)
+app.use("/api/execution", executionRoute);
 
-// Start server
-async function startServer() {
-    try {
-        await dbConnect();
-        
-        app.listen(port, () => {
-            console.log(`Server running on http://localhost:${port}`);
-        });
-    } catch (error) {
-        console.error("Failed to start server:", error);
-        process.exit(1);
-    }
-}
-
-startServer();
+export default app;
