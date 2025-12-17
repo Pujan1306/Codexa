@@ -44,6 +44,10 @@ app.get("/api/auth/get-session", async (req, res) => {
     res.status(500).json({ error: err.message, stack: err.stack });
   }
 });
+app.get("/debug-cookies", (req, res) => {
+  console.log("Cookies received:", req.headers.cookie);
+  res.json({ cookies: req.headers.cookie || null });
+});
 
 // Start server
 async function startServer() {
