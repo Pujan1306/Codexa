@@ -29,8 +29,11 @@ app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 // Mount routes
 app.all('/api/auth/{*any}', toNodeHandler(auth, {
   cookieOptions: {
-    sameSite: "none", // allow cross-origin
-    secure: true     
+    sameSite: ENV.NODE_ENV === 'production' ? 'none' : 'lax', 
+    secure: ENV.NODE_ENV === 'production', 
+    httpOnly: true,
+    path: '/',
+    maxAge: 1000 * 60 * 60 * 24 * 7 
   }
 }));
 app.use("/api/sessions", sessionRoute);
