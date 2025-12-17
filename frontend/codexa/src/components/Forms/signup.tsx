@@ -68,7 +68,7 @@ export const SignupForm: React.FC = () => {
       setIsLoading(true)
       const { data, error } = await authClient.signIn.social({
         provider: "google",
-        callbackURL: "http://localhost:5173/dashboard"
+        callbackURL: `${import.meta.env.VITE_FRONTEND_URL}/dashboard`
       })
       if (error) {
         toast.error("Failed to sign in")
