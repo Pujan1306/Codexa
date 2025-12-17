@@ -8,6 +8,8 @@ import { toNodeHandler } from "better-auth/node";
 import sessionRoute from "./routes/sessionRoute.js";
 import chatRoute from "./routes/chatRoute.js";
 import executionRoute from "./routes/executionRoute.js";
+import crypto from "crypto";
+globalThis.crypto = crypto.webcrypto || crypto; 
 
 const app = express();
 const port = ENV.PORT;
