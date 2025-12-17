@@ -3,6 +3,7 @@ import { mongodbAdapter} from "better-auth/adapters/mongodb";
 import { ENV } from "../lib/env.js";
 import { MongoClient } from "mongodb";
 
+
 const client = new MongoClient(ENV.MONGO_URL)
 await client.connect()
 
@@ -36,7 +37,6 @@ export const auth = betterAuth({
         ENV.CLIENT_URL
     ],
     cookie: {
-        domain: ".onrender.com", 
         secure: true,
         sameSite: "none",
         httpOnly: true,
