@@ -34,7 +34,16 @@ app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/execution", executionRoute)
-
+app.get("/api/auth/get-session", async (req, res) => {
+  try {
+    const session = await auth.getSession(req, res);
+    console.log("Session fetched:", session);
+    res.json({ session });
+  } catch (err) {
+    console.error("Error fetching session:", err);
+    res.status(500).json({ error: err.message, stack: err.stack });
+  }
+});
 
 // Start server
 async function startServer() {
