@@ -33,5 +33,7 @@ export const auth = betterAuth({
 
     trustedOrigins: [
         ENV.CLIENT_URL
+
     ]
 })
+
