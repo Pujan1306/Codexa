@@ -3,6 +3,7 @@ import { mongodbAdapter} from "better-auth/adapters/mongodb";
 import { ENV } from "../lib/env.js";
 import { MongoClient } from "mongodb";
 
+
 const client = new MongoClient(ENV.MONGO_URL)
 await client.connect()
 
