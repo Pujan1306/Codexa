@@ -1,0 +1,302 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(24.6 4% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary: hsl(24.6 95% 53.1%);
+  --primary-foreground: hsl(240 10% 3.9%);
+  --secondary: hsl(60 4.8% 95.9%);
+  --secondary-foreground: hsl(240 10% 3.9%);
+  --muted: hsl(0 0% 96%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(60 4.8% 95.9%);
+  --accent-foreground: hsl(240 10% 3.9%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(24.6 14.3% 90%);
+  --input: hsl(24.6 14.3% 90%);
+  --ring: hsl(24.6 95% 53.1%);
+
+  --chart-1: hsl(24.6 95% 53.1%);
+  --chart-2: hsl(20 80% 55%);
+  --chart-3: hsl(18 75% 50%);
+  --chart-4: hsl(30 85% 60%);
+  --chart-5: hsl(12 90% 58%);
+
+  --sidebar: hsl(0 0% 96%);
+  --sidebar-foreground: hsl(240 10% 3.9%);
+  --sidebar-primary: hsl(24.6 95% 53.1%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(60 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 10% 3.9%);
+  --sidebar-border: hsl(24.6 14.3% 90%);
+  --sidebar-ring: hsl(24.6 95% 53.1%);
+
+  --font-sans: Poppins, sans-serif;
+  --font-serif: Libre Baskerville, serif;
+  --font-mono: IBM Plex Mono, monospace;
+
+  --radius: 0.5rem;
+
+  --shadow-x: 1px;
+  --shadow-y: 1px;
+  --shadow-blur: 16px;
+  --shadow-spread: -2px;
+  --shadow-opacity: 0.12;
+  --shadow-color: hsl(0 0% 0%);
+  --shadow-2xs: 1px 1px 16px -2px hsl(0 0% 0% / 0.06);
+  --shadow-xs: 1px 1px 16px -2px hsl(0 0% 0% / 0.06);
+  --shadow-sm: 1px 1px 16px -2px hsl(0 0% 0% / 0.12), 1px 1px 2px -3px hsl(0 0% 0% / 0.12);
+  --shadow: 1px 1px 16px -2px hsl(0 0% 0% / 0.12), 1px 1px 2px -3px hsl(0 0% 0% / 0.12);
+  --shadow-md: 1px 1px 16px -2px hsl(0 0% 0% / 0.12), 1px 2px 4px -3px hsl(0 0% 0% / 0.12);
+  --shadow-lg: 1px 1px 16px -2px hsl(0 0% 0% / 0.12), 1px 4px 6px -3px hsl(0 0% 0% / 0.12);
+  --shadow-xl: 1px 1px 16px -2px hsl(0 0% 0% / 0.12), 1px 8px 10px -3px hsl(0 0% 0% / 0.12);
+  --shadow-2xl: 1px 1px 16px -2px hsl(0 0% 0% / 0.30);
+
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: hsl(20 14.3% 4.1%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(20 14.3% 4.1%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(24.6 14.25% 9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary: hsl(20.5 90.2% 48.2%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(12 6.5% 15.1%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --accent: hsl(12 6.5% 15.1%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --muted: hsl(20 14.3% 15%);
+  --muted-foreground: hsl(0 0% 63.9%);
+  --border: hsl(24.6 14.3% 15.9%);
+  --input: hsl(24.6 14.3% 15.9%);
+  --ring: hsl(20.5 90.2% 48.2%);
+
+  --chart-1: hsl(20.5 90.2% 48.2%);
+  --chart-2: hsl(0 84.2% 60.2%);
+  --chart-3: hsl(12 80% 55%);
+  --chart-4: hsl(40 75% 70%);
+  --chart-5: hsl(15 80% 65%);
+
+  --sidebar: hsl(20 14.3% 15%);
+  --sidebar-foreground: hsl(0 0% 98%);
+  --sidebar-primary: hsl(20.5 90.2% 48.2%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(12 6.5% 15.1%);
+  --sidebar-accent-foreground: hsl(0 0% 98%);
+  --sidebar-border: hsl(24.6 14.3% 15.9%);
+  --sidebar-ring: hsl(20.5 90.2% 48.2%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+}
+
+@theme {
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float-delayed 7s ease-in-out infinite 1s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0) };
+  50% { transform: translateY(-8px) };
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+      /* PrismJS Syntax Highlighting - Vibrant Dark Theme (Dracula/One Dark Hybrid) */
+      code[class*="language-"],
+      pre[class*="language-"] {
+        color: #abb2bf;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        tab-size: 2;
+        hyphens: none;
+      }
+
+      /* Keywords: import, function, return, const, var -> Vibrant Pink */
+      .token.keyword,
+      .token.operator,
+      .token.arrow,
+      .token.module {
+        color: #ff79c6;
+        font-weight: bold;
+      }
+
+      /* Functions/Classes/Tags: App, HeroSection -> Cyan/Blue */
+      .token.function,
+      .token.class-name,
+      .token.tag,
+      .token.selector {
+        color: #8be9fd;
+      }
+
+      /* Strings: "Code Together" -> Vibrant Green */
+      .token.string,
+      .token.char,
+      .token.attr-value {
+        color: #50fa7b;
+      }
+
+      /* Attributes: title= -> Cyan/Blue (Italic) */
+      .token.attr-name {
+        color: #8be9fd;
+        font-style: italic;
+      }
+
+      /* Numbers/Booleans -> Purple */
+      .token.number,
+      .token.boolean,
+      .token.constant,
+      .token.property,
+      .token.regex,
+      .token.inserted {
+        color: #bd93f9;
+      }
+
+      /* Comments -> Grey Blue (Italic) */
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: #6272a4;
+        font-style: italic;
+      }
+
+      /* Punctuation -> White/Light Grey */
+      .token.punctuation {
+        color: #f8f8f2;
+      }
+
+      .token.namespace {
+        opacity: .7;
+      }
+
+      .token.deleted {
+        color: #ff5555;
+      }
+
+      .token.important,
+      .token.bold {
+        font-weight: bold;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      /* Stream Chat Styles */
+      .str-chat-container {
+          height: 100%;
+      }
+      .str-chat {
+          background-color: transparent;
+          height: 100%;
+      }
+      .str-chat__list {
+          background-color: transparent;
+      }
+      .str-chat__channel-list {
+          background-color: transparent;
+      }
+      .str-chat__main-panel {
+          padding: 0;
+      }
+      .str-chat__ul {
+            padding-bottom: 10px;
+      }
+      .str-chat__input-flat {
+          background-color: hsl(var(--card));
+          border-top: 1px solid hsl(var(--border));
+      }
+      .str-chat__input-flat-wrapper {
+          background-color: hsl(var(--background));
+          border: 1px solid hsl(var(--border));
+      }
