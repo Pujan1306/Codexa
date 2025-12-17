@@ -42,7 +42,10 @@ export const LoginForm: React.FC = () => {
       }
       if (data) {
         toast.success("Signed in successfully")
-        navigate("/dashboard")
+        const {data: userSession} = await authClient.getSession()
+        if (userSession?.session) {
+          navigate("/dashboard")
+        }
       }
     } catch (error) {
       toast.error("Something went wrong")
