@@ -35,7 +35,6 @@ app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/execution", executionRoute)
 
-
 // Start server
 async function startServer() {
     try {
