@@ -32,14 +32,6 @@ app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/execution", executionRoute)
 
-// Serve frontend in production
-if (ENV.NODE_ENV === "production") {
-    const __dirname = path.resolve();
-    app.use(express.static(path.join(__dirname, "../../frontend/codexa/dist")));
-    app.get("/{*any}", (req, res) => {
-        res.sendFile(path.join(__dirname, "../../frontend/codexa/dist/index.html"));
-    });
-}
 
 // Start server
 async function startServer() {
