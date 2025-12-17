@@ -36,8 +36,9 @@ export const auth = betterAuth({
         ENV.CLIENT_URL
     ],
     cookie: {
-    sameSite: "none",
-    secure: true,
-    httpOnly: true,
+        domain: ".onrender.com", 
+        secure: true,
+        sameSite: "none",
+        httpOnly: true,
     }
 })
