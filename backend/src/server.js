@@ -27,17 +27,7 @@ app.use(express.json());
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
 // Mount routes
-app.all(
-  "/api/auth/{*any}",
-  toNodeHandler(auth, {
-    cookieOptions: {
-      httpOnly: true,
-      secure: true,           
-      sameSite: "none",       
-      path: "/",
-    },
-  })
-);
+app.all("/api/auth/{*any}", toNodeHandler(auth));
 
 app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
