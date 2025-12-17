@@ -36,7 +36,8 @@ export const auth = betterAuth({
         ENV.CLIENT_URL
     ],
     cookie: {
-        secure: true,
-        sameSite: "none",
-    },
+    sameSite: "none",
+    secure: true,
+    httpOnly: true,
+    }
 })
