@@ -13,7 +13,7 @@ export const auth = betterAuth({
         google: {
             clientId: ENV.GOOGLE_CLIENT_ID,
             clientSecret: ENV.GOOGLE_CLIENT_SECRET,
-            redirectURI: `${ENV.CLIENT_URL}/api/auth/callback/google`
+            redirectURI: `${ENV.BETTER_AUTH_URL}/api/auth/callback/google`
         } 
     },
 
@@ -31,6 +31,8 @@ export const auth = betterAuth({
         expiresIn: 60 * 60 * 24 * 7
     },
 
-    trustedOrigins:[ENV.CLIENT_URL],
-    
+    trustedOrigins: [
+        ENV.CLIENT_URL,
+        ENV.BETTER_AUTH_URL
+    ],
 })
