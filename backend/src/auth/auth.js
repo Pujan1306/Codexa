@@ -33,4 +33,8 @@ export const auth = betterAuth({
     trustedOrigins: [
         ENV.CLIENT_URL
     ],
+    cookie: {
+        secure: true,
+        sameSite: "none",
+    },
 })
