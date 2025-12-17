@@ -21,8 +21,8 @@ process.on("uncaughtException", (err) => {
 process.on("unhandledRejection", (reason) => {
   console.error("UNHANDLED REJECTION:", reason);
 });
-
 // Middleware
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
