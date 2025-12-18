@@ -8,8 +8,6 @@ const client = new MongoClient(ENV.MONGO_URL)
 await client.connect()
 
 export const auth = betterAuth({
-    baseURL: `${ENV.BETTER_AUTH_URL}/api/auth`,
-    
     database: mongodbAdapter(client.db(), {client}),
 
     socialProviders: {
@@ -34,12 +32,12 @@ export const auth = betterAuth({
     },
 
     trustedOrigins: [
-        ENV.CLIENT_URL
+        ENV.CLIENT_URL,
+        ENV.BETTER_AUTH_URL
     ],
-    cookie: {
-        name: "better-auth-session",
-        secure: true,
-        sameSite: "none",
-        httpOnly: true,
-    }
+
+    advanced: {
+        crossOriginCookies: true
+    }, 
 })
+

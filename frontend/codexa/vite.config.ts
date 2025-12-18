@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/auth": {
-        target: "http://localhost:3000",
+        target: "https://codexa-lsdn.vercel.app",
         changeOrigin: true,
         secure: false,
       },
