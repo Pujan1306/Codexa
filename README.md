@@ -77,7 +77,7 @@ VITE_STREAM_API_KEY=your_stream_api_key
 
 1. **Clone the repository**
    ```bash
-   git clone [your-repo-url]
+   git clone https://github.com/Pujan1306/Codexa.git
    cd project-directory
    ```
 
