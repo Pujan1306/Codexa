@@ -35,7 +35,9 @@ export const auth = betterAuth({
         ENV.CLIENT_URL,
         ENV.BETTER_AUTH_URL
     ],
+
     advanced: {
         crossOriginCookies: true
     }, 
 })
+
