@@ -7,8 +7,6 @@ import { toNodeHandler } from "better-auth/node";
 import sessionRoute from "./routes/sessionRoute.js";
 import chatRoute from "./routes/chatRoute.js";
 import executionRoute from "./routes/executionRoute.js";
-import crypto from "crypto";
-globalThis.crypto = crypto.webcrypto || crypto; 
 
 const app = express();
 const port = ENV.PORT;
@@ -24,7 +22,7 @@ process.on("unhandledRejection", (reason) => {
 // Middleware
 app.set("trust proxy", 1);
 app.use(express.json());
-app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+app.use(cors({ origin: ENV.CLIENT_URL, methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"], credentials: true }));
 
 // Start server
 let dbReady = false;
@@ -47,4 +45,6 @@ app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/execution", executionRoute);
 
-export default app;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
