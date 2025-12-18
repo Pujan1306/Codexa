@@ -45,6 +45,6 @@ app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/execution", executionRoute);
 
-
-export default app;
-
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
