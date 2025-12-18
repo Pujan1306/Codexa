@@ -139,7 +139,7 @@ project-root/
    - Sign up at https://getstream.io/
    - Create a new app and get your API key and secret
    - Update the Stream.io credentials in both frontend and backend `.env` files
-3. **Email**: If using email features, configure SMTP settings in the backend `.env` file.
+
 
 ## Contributing
 
