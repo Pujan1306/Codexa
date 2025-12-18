@@ -10,13 +10,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  server: {
-    proxy: {
-      "/api/auth": {
-        target: "https://codexa-lsdn.vercel.app",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
 })
