@@ -34,8 +34,7 @@ export const auth = betterAuth({
     },
 
     trustedOrigins: [
-        ENV.CLIENT_URL,
-        ENV.BETTER_AUTH_URL
+        ENV.CLIENT_URL
     ],
 
     advanced: {
