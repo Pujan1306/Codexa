@@ -10,6 +10,8 @@ await client.connect()
 export const auth = betterAuth({
     database: mongodbAdapter(client.db(), {client}),
 
+    baseURL: ENV.BETTER_AUTH_URL,
+
     socialProviders: {
         google: {
             clientId: ENV.GOOGLE_CLIENT_ID,
@@ -37,10 +39,11 @@ export const auth = betterAuth({
     ],
 
     advanced: {
-        crossSubDomainCookies: {
-            enabled: true,
-            domain: ENV.CLIENT_URL
-        }
+        defaultCookieAttributes: {
+            sameSite: "none",
+            secure: true
+        },
+        crossOriginCookies: { enabled: true }
     }, 
 })
 
