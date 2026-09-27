@@ -141,6 +141,45 @@ project-root/
    - Update the Stream.io credentials in both frontend and backend `.env` files
 3. **Email**: If using email features, configure SMTP settings in the backend `.env` file.
 
+## Deployment (Docker — single server)
+
+Frontend and backend run on **one server**: the backend Express server serves the built frontend from `backend/public` and all API routes under `/api`.
+
+### Run everything with one command
+
+```bash
+docker build -f .dockerfile -t codexa . && docker run --rm -p 3000:3000 --env-file backend/.env codexa
+```
+
+Then open http://localhost:3000 — the app and its API are both served there.
+
+### Deploying on Render (Docker runtime)
+
+1. Push this repo to GitHub (the `.dockerfile` at the root is auto-detected by Render when you choose **Docker** as the runtime).
+2. Create a **Web Service** from the repo, set the Docker command file to `.dockerfile` if asked, and pick the instance type.
+3. Add the **runtime** environment variables (Render's Environment tab):
+   - `MONGO_URL`, `CLIENT_URL`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `STREAM_API_KEY`, `STREAM_API_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
+   - `CLIENT_URL` and `BETTER_AUTH_URL` = your Render URL, e.g. `https://codexa.onrender.com`
+4. Add the **build-time** env vars for the frontend (Vite bakes these into the bundle during `docker build`; Render passes env vars to Docker build args automatically — see [Render's Docker docs](https://render.com/docs/docker)):
+   - `VITE_API_URL` = your Render URL, e.g. `https://codexa.onrender.com`
+   - `VITE_FRONTEND_URL` = your Render URL
+   - `VITE_STREAM_API_KEY` = your Stream public API key
+
+   ⚠️ If you change any of these, trigger a **Manual Deploy → Clear build cache & deploy** so the frontend bundle gets rebuilt with the new values.
+5. Render detects the app listening on the port from the `PORT` env var — no extra config needed.
+
+### Environment variables the container needs at runtime
+
+| Variable | Purpose |
+| --- | --- |
+| `MONGO_URL` | MongoDB connection string |
+| `CLIENT_URL` | Frontend origin (for CORS + trusted origins) — same host when served together |
+| `BETTER_AUTH_URL` | Base URL for Better Auth |
+| `BETTER_AUTH_SECRET` | Auth secret (min 32 chars) |
+| `STREAM_API_KEY` / `STREAM_API_SECRET` | Stream.io chat & video (server side) |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth |
+| `PORT` | Render sets this automatically |
+
 ## Contributing
 
 1. Fork the repository

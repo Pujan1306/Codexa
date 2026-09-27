@@ -1,4 +1,7 @@
 import express from "express";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 import { ENV } from "./lib/env.js";
 import { dbConnect } from "./lib/dbConnect.js";
 import cors from "cors";
@@ -44,6 +47,25 @@ app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/execution", executionRoute);
+
+// Serve frontend (SPA) from backend/public if present
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const publicDir = path.resolve(__dirname, "../public");
+
+if (fs.existsSync(path.join(publicDir, "index.html"))) {
+  app.use(express.static(publicDir));
+
+  // SPA fallback: any non-API route serves index.html
+  app.get("/{*any}", (req, res, next) => {
+    if (req.path.startsWith("/api")) return next();
+    res.sendFile(path.join(publicDir, "index.html"));  });
+
+  console.log(`Serving frontend from ${publicDir}`);
+} else {
+  app.get("/", (req, res) => {
+    res.json({ status: "ok", message: "Codexa API is running" });
+  });
+}
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

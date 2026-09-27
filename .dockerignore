@@ -1,0 +1,25 @@
+# Git
+.git
+.gitignore
+.freebuff
+
+# Dependencies
+node_modules
+**/node_modules
+
+# Build output (rebuilt inside the image)
+frontend/codexa/dist
+
+# Env files (secrets come from Render at build/run time)
+.env
+**/.env
+**/.env.*
+!**/.env.example
+
+# Vercel config (not used in Docker deploy)
+vercel.json
+
+# Docs / misc
+README.md
+*.log
+.DS_Store
