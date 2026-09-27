@@ -33,16 +33,8 @@ export const auth = betterAuth({
         expiresIn: 60 * 60 * 24 * 7
     },
 
-    trustedOrigins: [
-        ENV.CLIENT_URL
-    ],
-
-    advanced: {
-        defaultCookieAttributes: {
-            sameSite: "none",
-            secure: true
-        },
-        crossOriginCookies: { enabled: true }
-    }, 
+    // Frontend is served from this same origin (no CORS/cross-origin cookies needed):
+    // - baseURL's origin is trusted automatically by better-auth
+    // - relative callbackURLs like "/dashboard" are allowed by better-auth by design
+    // - secure cookies are derived automatically from baseURL (https on Render)
 })
-
