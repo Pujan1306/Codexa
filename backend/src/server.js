@@ -20,7 +20,9 @@ process.on("uncaughtException", (err) => {
 
 process.on("unhandledRejection", (reason) => {
   console.error("UNHANDLED REJECTION:", reason);
-});// Middleware
+});
+
+// Middleware
 app.set("trust proxy", 1);
 app.use(express.json());
 
@@ -65,9 +67,6 @@ app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.use("/api/sessions", sessionRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/execution", executionRoute);
-app.get("/", (req, res) => {
-  res.status(200).send("Server is running");
-});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
