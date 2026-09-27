@@ -9,7 +9,7 @@ export interface ExecutionResponse {
 export const executeCodeApi = {
     execute: async (language: string, code: string): Promise<ExecutionResponse> => {
         try {
-            const response = await axios.post<ExecutionResponse>(import.meta.env.VITE_API_URL + "/api/execution", {language, code});
+            const response = await axios.post<ExecutionResponse>("/api/execution", {language, code});
             return response.data;
         } catch (error: any) {
             console.error("Error executing code:", error);

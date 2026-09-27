@@ -14,38 +14,32 @@ RUN npm ci
 # Copy source
 COPY frontend/codexa/ ./
 
-# --- Vite env vars are baked in at build time ---
-# On Render: add these as Environment Variables on the service
-# and they are automatically passed as build args.
-ARG VITE_API_URL
-ARG VITE_FRONTEND_URL
+# Vite env vars are baked in at build time.
+# Render automatically passes service env vars as build args (same names).
 ARG VITE_STREAM_API_KEY
-ENV VITE_API_URL=$VITE_API_URL \
-    VITE_FRONTEND_URL=$VITE_FRONTEND_URL \
-    VITE_STREAM_API_KEY=$VITE_STREAM_API_KEY
+ENV VITE_STREAM_API_KEY=$VITE_STREAM_API_KEY
 
 RUN npm run build
 
 ########################
-# Stage 2: Backend runtime
+# Stage 2: Backend runtime (serves API + frontend from one server)
 ########################
 FROM node:22-alpine AS backend-runtime
 
 WORKDIR /app
 
 ENV NODE_ENV=production
-# Render sets PORT, but keep a sane default
+# Render sets PORT at runtime; this is the local fallback
 ENV PORT=3000
 
-# Install backend deps (omit devDeps)
+# Install backend deps (omit devDeps like nodemon)
 COPY backend/package.json backend/package-lock.json ./
 RUN npm ci --omit=dev
 
 # Copy backend source
 COPY backend/src ./src
-COPY backend/nodemon.json ./
 
-# Copy frontend build output into backend/public
+# Copy frontend build output into backend/public (served by Express)
 COPY --from=frontend-build /app/frontend/dist ./public
 
 EXPOSE 3000

@@ -1,3 +1,7 @@
 node_modules
 .env
 .DS_Store
+
+# Frontend dist is committed only for non-Docker static hosting; Docker rebuilds it in the image
+frontend/codexa/dist
+backend/public

@@ -9,6 +9,7 @@ node_modules
 
 # Build output (rebuilt inside the image)
 frontend/codexa/dist
+backend/public
 
 # Env files (secrets come from Render at build/run time)
 .env
