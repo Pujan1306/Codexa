@@ -75,7 +75,7 @@ VITE_STREAM_API_KEY=your_stream_api_key
 
 1. **Clone the repository**
    ```bash
-   git clone [your-repo-url]
+   git clone https://github.com/Pujan1306/Codexa.git
    cd project-directory
    ```
 
@@ -137,7 +137,7 @@ project-root/
    - Sign up at https://getstream.io/
    - Create a new app and get your API key and secret
    - Update the Stream.io credentials in both frontend and backend `.env` files
-3. **Email**: If using email features, configure SMTP settings in the backend `.env` file.
+
 
 ## Deployment (Docker — single server)
 
